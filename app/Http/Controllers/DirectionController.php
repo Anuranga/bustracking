@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\DriverLocations;
+use App\Models\Routes;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class DirectionController extends Controller
 {
-    public function UserLocationRequest($origin, $destination){
-
+    public function UserLocationRequest($origin, $destination)
+    {
         $endpoint = "https://maps.googleapis.com/maps/api/directions/json";
         $client = new \GuzzleHttp\Client();
 
@@ -25,5 +29,32 @@ class DirectionController extends Controller
         $content = $response->getBody();
 
         return json_decode($response->getBody(), true);
+    }
+
+    public function GetRoutes($origin): array
+    {
+        $routes = Routes::select('route_id','route_number', 'route_name', 'route_description', 'status', 'created_at')
+            ->with(['route_start_point' => function($query){
+                $query->select('route_id','route_start_name', 'route_start_lat', 'route_start_lon');
+            }, 'route_end_point' => function($query){
+                $query->select('route_id','route_end_name', 'route_end_lat', 'route_end_lon');
+            }])->get();
+
+        return [
+            'routs' => $routes,
+            "code" => 200,
+	        "message" => "Success"
+        ];
+    }
+
+    public function storeDriverLocation(Request $request)
+    {
+        return DriverLocations::create([
+            'route_id' => $request['route_id'],
+            'lat' => $request['lat'],
+            'lon' => $request['lon'],
+            'origin' => $request['origin'],
+            'destination' => $request['destination']
+        ]);
     }
 }

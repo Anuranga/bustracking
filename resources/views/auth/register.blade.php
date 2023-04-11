@@ -20,9 +20,25 @@
             </div>
 
             <div class="mt-4">
+                <x-jet-label for="phone" value="{{ __('Phone') }}" />
+                <x-jet-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="vehicle_number" value="{{ __('Vehicle Number') }}" />
+                <x-jet-input id="vehicle_number" class="block mt-1 w-full" type="text" name="vehicle_number" :value="old('vehicle_number')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="route_number" value="{{ __('Route Number') }}" />
+                <x-jet-input id="route_number" class="block mt-1 w-full" type="text" name="route_number" :value="old('route_number')" required />
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
+
 
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />

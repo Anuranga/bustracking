@@ -19,8 +19,11 @@ Route::get('/', function () {
 });
 
 Route::prefix('users')->group(function (){
-        Route::get('/user/route/{origin}/{destination}', [DirectionController::class, 'UserLocationRequest'])->name('user.view');
+        Route::get('/user/route/{origin}/{destination}', [DirectionController::class, 'UserLocationRequest']);
 });
+
+Route::get('/getRoutes/{origin}', [DirectionController::class, 'GetRoutes']);
+Route::post('/currentLocation', [DirectionController::class, 'storeDriverLocation']);
 
 Route::middleware([
     'auth:sanctum',
