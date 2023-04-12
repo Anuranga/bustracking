@@ -81,4 +81,8 @@ class PassengerController extends Controller
         }
         return response()->json(['success'=>true,'message'=>'success', 'data' => $routes]);
     }
+
+    public function PassengerList(){
+        return view('passenger.passengerlist');
+    }
 }

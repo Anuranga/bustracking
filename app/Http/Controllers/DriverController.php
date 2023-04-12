@@ -33,4 +33,12 @@ class DriverController extends Controller
         }
         return response()->json(['success'=>true,'message'=>'success', 'data' => $routes]);
     }
+
+    public function RegisterDriver(){
+        return view('driver.register');
+    }
+
+    public function DriverList(){
+        return view('driver.driverlist');
+    }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DirectionController;
+use App\Http\Controllers\DriverController;
+use App\Http\Controllers\PassengerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,10 @@ Route::prefix('users')->group(function (){
 
 Route::get('/getRoutes', [DirectionController::class, 'GetRoutes']);
 Route::post('/currentLocation', [DirectionController::class, 'storeDriverLocation']);
+Route::any('/driver_registration', [DriverController::class, 'RegisterDriver'])->name('driver_registration');
+//Route::any('/passenger_registration', [PassengerController::class, 'RegisterPassenger'])->name('driver_registration');
+Route::any('/driver_list', [DriverController::class, 'DriverList'])->name('driver_list');
+Route::any('/passenger_list', [PassengerController::class, 'PassengerList'])->name('passenger_list');
 
 Route::middleware([
     'auth:sanctum',
@@ -31,6 +37,6 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('welcome');
     })->name('dashboard');
 });
