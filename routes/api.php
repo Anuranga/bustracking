@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/currentLocation', [DirectionController::class, 'storeDriverLocation']);
 Route::post('/driverLogin', [DriverController::class, 'DriverLogin']);
 Route::post('/passenger_register', [PassengerController::class, 'create']);
+Route::post('/passenger_Login', [PassengerController::class, 'PassengerLogin']);
 
 /*Route::post('/register', [RegisteredUserController::class, 'create'])
     ->middleware(['guest:'.config('fortify.guard')])

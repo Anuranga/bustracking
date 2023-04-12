@@ -16,6 +16,7 @@ class DriverLocations extends Model
         'lat',
         'lon',
         'origin',
-        'destination'
+        'destination',
+        'trip_status'
     ];
 }

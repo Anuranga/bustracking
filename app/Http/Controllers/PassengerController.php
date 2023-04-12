@@ -63,7 +63,8 @@ class PassengerController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        $user = User::where('email', '=', $email)->first();
+        $user = User::where('email', '=', $email)
+            ->where('role', '=', 2)->first();
 
         $routes = Routes::select('route_id','route_number', 'route_name', 'route_description', 'status', 'created_at')
             ->with(['route_start_point' => function($query){

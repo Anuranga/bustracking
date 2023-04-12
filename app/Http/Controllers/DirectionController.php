@@ -31,7 +31,7 @@ class DirectionController extends Controller
         return json_decode($response->getBody(), true);
     }
 
-    public function GetRoutes($origin): array
+    public function GetRoutes(): array
     {
         $routes = Routes::select('route_id','route_number', 'route_name', 'route_description', 'status', 'created_at')
             ->with(['route_start_point' => function($query){
@@ -54,6 +54,7 @@ class DirectionController extends Controller
             'lat' => $request['lat'],
             'lon' => $request['lon'],
             'origin' => $request['origin'],
+            'trip_status' => $request['trip_status'],
             'destination' => $request['destination']
         ]);
     }
