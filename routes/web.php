@@ -24,18 +24,11 @@ Route::prefix('users')->group(function (){
         Route::get('/user/route/{origin}/{destination}', [DirectionController::class, 'UserLocationRequest']);
 });
 
-//Route::get('/getRoutes', [DirectionController::class, 'GetRoutes']);
-//Route::post('/current_location', [DirectionController::class, 'storeDriverLocation']);
 Route::any('/driver_registration', [DriverController::class, 'RegisterDriver'])->name('driver_registration');
-//Route::any('/passenger_registration', [PassengerController::class, 'RegisterPassenger'])->name('driver_registration');
 Route::any('/driver_list', [DriverController::class, 'DriverList'])->name('driver_list');
 Route::any('/passenger_list', [PassengerController::class, 'PassengerList'])->name('passenger_list');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('welcome');
     })->name('dashboard');
