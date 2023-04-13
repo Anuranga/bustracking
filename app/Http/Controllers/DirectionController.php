@@ -47,10 +47,25 @@ class DirectionController extends Controller
         ];
     }
 
+    public function GetRoutesVehicleList($id): array
+    {
+        $routes = DriverLocations::select('route_id','vehicle_number', 'lat', 'lon')
+            ->where('route_id', $id)
+            ->where('trip_status', 1)
+            ->get();
+
+        return [
+            'routs' => $routes,
+            "code" => 200,
+	        "message" => "Success"
+        ];
+    }
+
     public function storeDriverLocation(Request $request)
     {
         return DriverLocations::create([
             'route_id' => $request['route_id'],
+            'vehicle_number' => $request['vehicle_number'],
             'lat' => $request['lat'],
             'lon' => $request['lon'],
             'origin' => '',

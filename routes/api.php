@@ -26,4 +26,5 @@ Route::post('/driver_login', [DriverController::class, 'DriverLogin']);
 Route::post('/passenger_register', [PassengerController::class, 'create']);
 Route::post('/passenger_login', [PassengerController::class, 'PassengerLogin']);
 Route::get('/get_routes', [DirectionController::class, 'GetRoutes']);
+Route::get('/get_routes/{id}', [DirectionController::class, 'GetRoutesVehicleList']);
 
