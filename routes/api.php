@@ -25,8 +25,5 @@ Route::post('/currentLocation', [DirectionController::class, 'storeDriverLocatio
 Route::post('/driverLogin', [DriverController::class, 'DriverLogin']);
 Route::post('/passenger_register', [PassengerController::class, 'create']);
 Route::post('/passenger_Login', [PassengerController::class, 'PassengerLogin']);
-
-/*Route::post('/register', [RegisteredUserController::class, 'create'])
-    ->middleware(['guest:'.config('fortify.guard')])
-    ->name('register');*/
+Route::get('/getRoutes', [DirectionController::class, 'GetRoutes']);
 
