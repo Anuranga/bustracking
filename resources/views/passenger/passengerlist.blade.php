@@ -1,35 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Bus Tracking System</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    @livewireStyles
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Stellar Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{asset('vendors/simple-line-icons/css/simple-line-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('vendors/flag-icon-css/css/flag-icon.min.css')}}">
-    <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
-    <link rel="stylesheet" href="{{asset('css/css/style.css')}}">
-    <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" />
-    <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
-    <script src="{{asset('js/off-canvas.js')}}"></script>
-    <script src="{{asset('js/misc.js')}}"></script>
-</head>
+@include('layouts.head')
     <body>
         <div >
             @if (Route::has('login'))
@@ -39,9 +10,7 @@
                             <!-- partial:../../partials/_navbar.html -->
                             <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
                                 <div class="navbar-brand-wrapper d-flex align-items-center">
-                                    <a class="navbar-brand brand-logo" href="../../index.html">
-
-                                    </a>
+                                    <a class="navbar-brand brand-logo" href="../../index.html"></a>
                                 </div>
                                 {{--<div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
                                     <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome To Bus Tracking Dashboard!</h5>
@@ -67,7 +36,7 @@
                                 <div class="main-panel">
                                     <div class="content-wrapper">
                                         <div class="page-header">
-                                            <h3 class="page-title"> Basic Graphs </h3>
+                                            <h3 class="page-title"> Passenger List </h3>
                                             <nav aria-label="breadcrumb">
                                                 <ol class="breadcrumb">
                                                     {{-- <li class="breadcrumb-item"><a href="#">Tables</a></li>
@@ -79,9 +48,6 @@
                                             <div class="col-lg-12 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Passenger Table</h4>
-                                                        <p class="card-description"> Add class <code>.table-striped</code>
-                                                        </p>
                                                         <table class="table table-striped">
                                                             <thead>
                                                             <tr>
@@ -119,20 +85,14 @@
                                     </div>
                                     <!-- content-wrapper ends -->
                                     <!-- partial:../../partials/_footer.html -->
-                                    <footer class="footer">
-                                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Ravindu.com 2020</span>
-                                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Assignment</span>
-                                        </div>
-                                    </footer>
+                                @include('layouts.footer')
                                     <!-- partial -->
                                 </div>
                                 <!-- main-panel ends -->
                             </div>
                             <!-- page-body-wrapper ends -->
                         </div>
-                        <!-- container-scroller -->
-                        <!-- plugins:js -->
+
 
                     @endauth
                 </div>
