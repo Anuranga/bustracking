@@ -62,7 +62,7 @@
                                             <tbody>
                                             @foreach($allData as $key  => $data)
                                                 <tr>
-                                                    <td width="10px">{{ $data->id }}</td>
+                                                    <td width="10px">  {{ $data->id }} </td>
                                                     <td width="10px"> {{ $data->name }} </td>
                                                     <td width="10px"> {{ $data->email }} </td>
                                                     <td width="10px"> {{ $data->vehicle_number }} </td>

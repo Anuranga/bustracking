@@ -17,7 +17,7 @@ class DriverController extends Controller
         $password = $request->input('password');
 
         $user = User::where('email', '=', $email)->first();
-        Log::info(['Route', $user->route_number]);
+
         $routes = Routes::select('route_id','route_number', 'route_name', 'route_description', 'status', 'created_at')
             ->with(['route_start_point' => function($query){
                 $query->select('route_id','route_start_name', 'route_start_lat', 'route_start_lon');
@@ -41,7 +41,7 @@ class DriverController extends Controller
 
     public function DriverList()
     {
-        $data['allData'] = User::all();
+        $data['allData'] = User::where('role', 1)->get();
         return view('driver.driverlist', $data);
     }
 

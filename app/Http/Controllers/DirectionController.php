@@ -53,9 +53,9 @@ class DirectionController extends Controller
             'route_id' => $request['route_id'],
             'lat' => $request['lat'],
             'lon' => $request['lon'],
-            'origin' => $request['origin'],
+            'origin' => '',
             'trip_status' => $request['trip_status'],
-            'destination' => $request['destination']
+            'destination' => ''
         ]);
     }
 }

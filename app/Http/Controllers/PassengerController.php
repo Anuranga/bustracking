@@ -19,12 +19,19 @@ class PassengerController extends Controller
     {
         $input = $request->all();
 
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:10',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ])->validate();
+        ]);
+
+
+        if ($validator->fails()) {
+            return $validator->errors()->all();
+        }
+
 
         $routes = Routes::select('route_id','route_number', 'route_name', 'route_description', 'status', 'created_at')
             ->with(['route_start_point' => function($query){
@@ -33,8 +40,7 @@ class PassengerController extends Controller
                 $query->select('route_id','route_end_name', 'route_end_lat', 'route_end_lon');
             }])->get();
 
-        try{
-           User::create([
+            $passenger = User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'role' => 2,
@@ -43,18 +49,20 @@ class PassengerController extends Controller
                 'route_number' => 0,
                 'password' => Hash::make($input['password'])
             ]);
-            return [
-                'routs' => $routes,
-                "code" => 200,
-                "message" => "Success"
-            ];
-        } catch (\Exception $ex){
-            return [
-                'routs' => $ex,
-                "code" => 500,
-                "message" => "Fail"
-            ];
-        }
+
+            if ($passenger->exists) {
+                return [
+                    'routs' => $routes,
+                    "code" => 200,
+                    "message" => "Success"
+                ];
+            } elseif ($passenger->exists != 1) {
+                  return [
+                    'routs' => [ ],
+                    "code" => 500,
+                    "message" => "Fail"
+                ];
+            }
 
     }
 
@@ -82,7 +90,9 @@ class PassengerController extends Controller
         return response()->json(['success'=>true,'message'=>'success', 'data' => $routes]);
     }
 
-    public function PassengerList(){
-        return view('passenger.passengerlist');
+    public function PassengerList()
+    {
+        $data['allData'] = User::where('role', 2)->get();
+        return view('passenger.passengerlist', $data);
     }
 }
