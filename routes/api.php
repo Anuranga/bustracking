@@ -24,6 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/current_location', [DirectionController::class, 'storeDriverLocation']);
 Route::post('/driver_login', [DriverController::class, 'DriverLogin']);
 Route::post('/passenger_register', [PassengerController::class, 'create']);
-Route::post('/passenger_Login', [PassengerController::class, 'PassengerLogin']);
+Route::post('/passenger_login', [PassengerController::class, 'PassengerLogin']);
 Route::get('/get_routes', [DirectionController::class, 'GetRoutes']);
 
