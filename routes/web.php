@@ -25,7 +25,7 @@ Route::prefix('users')->group(function (){
 });
 
 //Route::get('/getRoutes', [DirectionController::class, 'GetRoutes']);
-Route::post('/currentLocation', [DirectionController::class, 'storeDriverLocation']);
+//Route::post('/current_location', [DirectionController::class, 'storeDriverLocation']);
 Route::any('/driver_registration', [DriverController::class, 'RegisterDriver'])->name('driver_registration');
 //Route::any('/passenger_registration', [PassengerController::class, 'RegisterPassenger'])->name('driver_registration');
 Route::any('/driver_list', [DriverController::class, 'DriverList'])->name('driver_list');

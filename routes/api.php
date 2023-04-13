@@ -21,9 +21,9 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/currentLocation', [DirectionController::class, 'storeDriverLocation']);
-Route::post('/driverLogin', [DriverController::class, 'DriverLogin']);
+Route::post('/current_location', [DirectionController::class, 'storeDriverLocation']);
+Route::post('/driver_login', [DriverController::class, 'DriverLogin']);
 Route::post('/passenger_register', [PassengerController::class, 'create']);
 Route::post('/passenger_Login', [PassengerController::class, 'PassengerLogin']);
-Route::get('/getRoutes', [DirectionController::class, 'GetRoutes']);
+Route::get('/get_routes', [DirectionController::class, 'GetRoutes']);
 
