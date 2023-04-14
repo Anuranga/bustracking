@@ -20,4 +20,14 @@ class DriverLocations extends Model
         'trip_status',
         'vehicle_number'
     ];
+
+    public function routes()
+    {
+        return $this->belongsTo(Routes::class, 'route_id', 'route_id');
+    }
+
+    public function driver()
+    {
+        return $this->belongsTo(User::class, 'vehicle_number', 'vehicle_number');
+    }
 }

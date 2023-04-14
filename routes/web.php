@@ -26,6 +26,8 @@ Route::prefix('users')->group(function (){
 
 Route::any('/driver_registration', [DriverController::class, 'RegisterDriver'])->name('driver_registration');
 Route::any('/driver_list', [DriverController::class, 'DriverList'])->name('driver_list');
+Route::any('/driver_routes_list', [DriverController::class, 'DriverRoutesList'])->name('driver_routes_list');
+Route::any('/passenger_routes_list', [PassengerController::class, 'PassengerRoutesList'])->name('passenger_routes_list');
 Route::any('/passenger_list', [PassengerController::class, 'PassengerList'])->name('passenger_list');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {

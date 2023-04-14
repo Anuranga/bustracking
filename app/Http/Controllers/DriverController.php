@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DriverLocations;
 use App\Models\Routes;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -49,5 +50,14 @@ class DriverController extends Controller
     {
         $data['allData'] = User::all();
         return view('driver.driverlist', $data);
+    }
+
+    public function DriverRoutesList()
+    {
+        $data['allData'] = DriverLocations::with(['routes', 'driver'])
+        // ->where('role', 1)
+        ->get();
+        Log::info($data);
+        return view('reports.driver_routes', $data);
     }
 }

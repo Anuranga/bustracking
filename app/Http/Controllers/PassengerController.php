@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Models\DriverLocations;
 use App\Models\Routes;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -94,5 +95,14 @@ class PassengerController extends Controller
     {
         $data['allData'] = User::where('role', 2)->get();
         return view('passenger.passengerlist', $data);
+    }
+
+    public function PassengerRoutesList()
+    {
+        $data['allData'] = DriverLocations::with(['routes', 'driver'])
+            // ->where('role', 1)
+            ->get();
+        Log::info($data);
+        return view('reports.passenger_routes', $data);
     }
 }
