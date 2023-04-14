@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\Jetstream;
+use PDF;
 
 class PassengerController extends Controller
 {
@@ -102,7 +103,31 @@ class PassengerController extends Controller
         $data['allData'] = DriverLocations::with(['routes', 'driver'])
             // ->where('role', 1)
             ->get();
-        Log::info($data);
+
         return view('reports.passenger_routes', $data);
+    }
+
+    public function generatePDF()
+    {
+        $data['allData'] = DriverLocations::with(['routes', 'driver'])
+                //->where('role', 1)
+                ->get();
+
+        $pdf = PDF::loadView('passenger_report', $data);
+        return $pdf->download('passenger_routes_report.pdf');
+    }
+
+    public function AllPassengerList()
+    {
+        $data['allData'] = User::with(['route'])->where('role', 2)->get();
+
+        return view('reports.all_passenger_list', $data);
+    }
+
+    public function generatePDFAllPassenger()
+    {
+        $data['allData'] = User::with(['route'])->where('role', 2)->get();
+        $pdf = PDF::loadView('all_passenger_report', $data);
+        return $pdf->download('all_passenger_report.pdf');
     }
 }

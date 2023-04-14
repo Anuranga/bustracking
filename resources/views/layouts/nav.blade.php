@@ -3,16 +3,11 @@
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
                 <div class="profile-image">
-                    <img class="img-xs rounded-circle" src="../../images/faces/face8.jpg" alt="profile image">
-                    <div class="dot-indicator bg-success"></div>
+                    <img class="img-xs rounded-circle" src="../../images/faces/face16.jpg" alt="profile image">
                 </div>
                 <div class="text-wrapper">
-                    <p class="profile-name">Allen Moreno</p>
+                    <p class="profile-name">Admin</p>
                     <p class="designation">Administrator</p>
-                </div>
-                <div class="icon-container">
-                    <i class="icon-bubbles"></i>
-                    <div class="dot-indicator bg-danger"></div>
                 </div>
             </a>
         </li>
@@ -43,7 +38,6 @@
                 <i class="icon-screen-desktop menu-icon"></i>
             </a>
         </li>
-
         <li class="nav-item nav-category">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" href="">
                 <span class="menu-title">Reports</span>
@@ -52,22 +46,13 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{route('driver_routes_list')}}">Driver Report</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{route('passenger_routes_list')}}">Passenger Report</a></li>
+                    {{--<li class="nav-item"> <a class="nav-link" href="{{route('passenger_routes_list')}}">Passenger Report</a></li>--}}
+                    <li class="nav-item"> <a class="nav-link" href="{{route('all_driver_list')}}">All Driver Report</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('all_passenger_list')}}">All Passenger Report</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('all_routes_list')}}">All Routes Report</a></li>
                 </ul>
             </div>
         </li>
-        {{--<li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-title">Basic UI Elements</span>
-                <i class="icon-layers menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a></li>
-                </ul>
-            </div>
-        </li>--}}
         <li class="nav-item nav-category">
             <span class="nav-link">Driver Register</span>
         </li>

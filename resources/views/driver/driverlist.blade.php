@@ -37,10 +37,7 @@
                         <div class="page-header">
                             <h3 class="page-title">Driver List </h3>
                             <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    {{-- <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                                     <li class="breadcrumb-item active" aria-current="page">Basic tables</li>--}}
-                                </ol>
+                                <ol class="breadcrumb"></ol>
                             </nav>
                         </div>
                         <div class="row">
@@ -56,7 +53,7 @@
                                                 <th> Vehicle Number </th>
                                                 <th> Registered Date </th>
                                                 <th> Phone </th>
-                                                <th> Status </th>
+                                                <th> View </th>
                                             </tr>
                                             </thead>
                                             <tbody>

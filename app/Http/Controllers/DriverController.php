@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use PDF;
 
 class DriverController extends Controller
 {
@@ -55,9 +56,42 @@ class DriverController extends Controller
     public function DriverRoutesList()
     {
         $data['allData'] = DriverLocations::with(['routes', 'driver'])
-        // ->where('role', 1)
+        //->where('role', 1)
         ->get();
-        Log::info($data);
+
         return view('reports.driver_routes', $data);
     }
+
+    public function AllDriverList()
+    {
+        $data['allData'] = User::with(['route'])->where('role', 1)->get();
+
+        return view('reports.all_driver_list', $data);
+    }
+
+    public function generatePDF()
+    {
+        $data['allData'] = DriverLocations::with(['routes', 'driver'])
+                //->where('role', 1)
+                ->get();
+
+        $pdf = PDF::loadView('myPDF', $data);
+        return $pdf->download('driver_routes_report.pdf');
+    }
+
+    public function generatePDFAllDriver()
+    {
+        $data['allData'] = User::with(['route'])->where('role', 1)->get();
+        $pdf = PDF::loadView('all_driver_report', $data);
+        return $pdf->download('all_driver_report.pdf');
+    }
+
+    public function AllRoutesList()
+        {
+            $data['allData'] = DriverLocations::with(['routes', 'driver'])
+            //->where('role', 1)
+            ->get();
+
+            return view('reports.driver_routes', $data);
+        }
 }

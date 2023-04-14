@@ -34,9 +34,9 @@
             <div class="main-panel">
             <div class="content-wrapper">
                 <div class="page-header">
-                    <h3 class="page-title">Driver Routes List </h3>
+                    <h3 class="page-title">All Passenger List </h3>
                     <div style="margin-left:680px">
-                        <a href="{{route('generate-pdf')}}">Export To PDF </a>
+                        <a href="{{route('generate-pdf-all-passenger')}}">Export To PDF </a>
                         <button type="button"  class="btn px-0"><i class="icon-export mr-2"></i></button>
                     </div>
                     <nav aria-label="breadcrumb">
@@ -54,25 +54,27 @@
                                     <thead>
                                     <tr>
                                         <th> Id </th>
-                                        <th> Driver Name </th>
-                                        <th> Route Name </th>
-                                        <th> Vehicle Number </th>
+                                        <th> Passenger Name </th>
+                                        <th> Passenger Email </th>
                                         <th> Registered Date </th>
                                         <th> Phone </th>
-                                        <th> Trip Date </th>
+                                        <th> Status </th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($allData as $key  => $data)
                                         <tr>
                                             <td width="10px"> {{ $key + 1 }} </td>
-                                            <td width="10px"> {{ $data->driver->name }} </td>
-                                            <td width="10px"> {{ $data->routes->route_name }} </td>
-                                            <td width="10px"> {{ $data->vehicle_number }} </td>
-                                            <td width="10px"> {{ \Carbon\Carbon::parse($data->driver->created_at)->format('d/m/Y')  }} </td>
-                                            <td width="10px"> {{ $data->driver->phone }} </td>
+                                            <td width="10px"> {{ $data->name }} </td>
+                                            <td width="10px"> {{ $data->email }} </td>
+                                            <td width="10px"> {{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y')}} </td>
+                                            <td width="10px"> {{ $data->phone }} </td>
                                             <td width="10px">
-                                                {{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y') }}
+                                                @if($data->status == 1)
+                                                    <span>Active</span>
+                                                @elseif($data->status == 0)
+                                                    <span>Pending</span>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

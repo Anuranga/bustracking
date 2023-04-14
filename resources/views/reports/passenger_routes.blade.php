@@ -9,7 +9,7 @@
             <!-- partial:../../partials/_navbar.html -->
             <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
                 <div class="navbar-brand-wrapper d-flex align-items-center">
-                    <a class="navbar-brand brand-logo" href="../../index.html"></a>
+                    <a class="navbar-brand brand-logo" href=""></a>
                 </div>
                 {{--<div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
                     <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome To Bus Tracking Dashboard!</h5>
@@ -36,6 +36,10 @@
             <div class="content-wrapper">
                 <div class="page-header">
                     <h3 class="page-title">Passenger Routes List </h3>
+                    <div style="margin-left:680px">
+                        <a href="{{route('generate-pdf-passenger')}}">Export To PDF </a>
+                        <button type="button"  class="btn px-0"><i class="icon-export mr-2"></i></button>
+                    </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             {{-- <li class="breadcrumb-item"><a href="#">Tables</a></li>
@@ -66,10 +70,10 @@
                                             <td width="10px"> {{ $data->driver->name }} </td>
                                             <td width="10px"> {{ $data->routes->route_name }} </td>
                                             <td width="10px"> {{ $data->vehicle_number }} </td>
-                                            <td width="10px"> {{ $data->driver->created_at }} </td>
+                                            <td width="10px"> {{ \Carbon\Carbon::parse($data->driver->created_at)->format('d/m/Y') }} </td>
                                             <td width="10px"> {{ $data->driver->phone }} </td>
                                             <td width="10px">
-                                                {{ $data->created_at }}
+                                                {{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y')$data->created_at }}
                                             </td>
                                         </tr>
                                     @endforeach

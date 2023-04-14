@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use PDF;
 
 class DirectionController extends Controller
 {
@@ -45,6 +46,31 @@ class DirectionController extends Controller
             "code" => 200,
 	        "message" => "Success"
         ];
+    }
+
+    public function AllRoutesList()
+    {
+        $data['allData'] = Routes::select('route_id','route_number', 'route_name', 'route_description', 'status', 'created_at')
+            ->with(['route_start_point' => function($query){
+                $query->select('route_id','route_start_name', 'route_start_lat', 'route_start_lon');
+            }, 'route_end_point' => function($query){
+                $query->select('route_id','route_end_name', 'route_end_lat', 'route_end_lon');
+            }])->get();
+
+         return view('reports.all_routes_list', $data);
+    }
+
+    public function generatePDFAllRoutes()
+    {
+        $data['allData'] = Routes::select('route_id','route_number', 'route_name', 'route_description', 'status', 'created_at')
+            ->with(['route_start_point' => function($query){
+                $query->select('route_id','route_start_name', 'route_start_lat', 'route_start_lon');
+            }, 'route_end_point' => function($query){
+                $query->select('route_id','route_end_name', 'route_end_lat', 'route_end_lon');
+            }])->get();
+
+        $pdf = PDF::loadView('all_routes_report', $data);
+        return $pdf->download('all_routes_report.pdf');
     }
 
     public function GetRoutesVehicleList($id): array
