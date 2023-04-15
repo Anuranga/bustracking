@@ -1,35 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Bus Tracking System</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    @livewireStyles
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Stellar Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{asset('vendors/simple-line-icons/css/simple-line-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('vendors/flag-icon-css/css/flag-icon.min.css')}}">
-    <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
-    <link rel="stylesheet" href="{{asset('css/css/style.css')}}">
-    <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" />
-    <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
-    <script src="{{asset('js/off-canvas.js')}}"></script>
-    <script src="{{asset('js/misc.js')}}"></script>
-</head>
+@include('layouts.head')
     <body>
         <div >
             @if (Route::has('login'))
@@ -47,6 +18,13 @@
                                     <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome To Bus Tracking Dashboard!</h5>
                                     <ul class="navbar-nav navbar-nav-right ml-auto">
                                     </ul>
+                                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                                        @csrf
+
+                                        <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 ml-2">
+                                            {{ __('Log Out') }}
+                                        </button>
+                                    </form>
                                     {{--@auth
                                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                                     @else
