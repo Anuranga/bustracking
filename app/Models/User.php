@@ -17,7 +17,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-
+    //public $role = 1;
     /**
      * The attributes that are mass assignable.
      *
@@ -67,4 +67,14 @@ class User extends Authenticatable
     {
        return $this->hasOne(Routes::class, 'route_id', 'route_id');
     }
+
+   /* public function hasRole(){
+        if($this->role === 2){
+            return 1&&2;
+        }else if($this->role === 1){
+            return 1;
+        }else{
+            return redirect()->back();
+        }
+    }*/
 }
