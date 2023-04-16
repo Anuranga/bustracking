@@ -45,7 +45,7 @@ class PassengerController extends Controller
             $passenger = User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
-                'role' => 2,
+                'role' => 3,
                 'phone' => $input['phone'],
                 'vehicle_number' => 'PASSENGER',
                 'route_number' => 0,

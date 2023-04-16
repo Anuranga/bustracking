@@ -33,6 +33,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         })->name('dashboard');
 
         Route::any('/driver_registration', [DriverController::class, 'RegisterDriver'])->name('driver_registration');
+        Route::any('/driver_create', [DriverController::class, 'CreateDriver'])->name('driver_create');
         Route::any('/update_driver_status', [DriverController::class, 'updateDriverStatus'])->name('update_driver_status');
         Route::any('/driver_list', [DriverController::class, 'DriverList'])->name('driver_list');
         Route::any('/driver_routes_list', [DriverController::class, 'DriverRoutesList'])->name('driver_routes_list');
