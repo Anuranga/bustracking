@@ -61,7 +61,6 @@
                                             <th> Name </th>
                                             <th> Email </th>
                                             <th> Registered Date </th>
-                                            <th> Vehicle Number </th>
                                             <th> Phone </th>
                                             <th> Status </th>
                                         </tr>
@@ -73,7 +72,6 @@
                                                 <td> {{ $data->name }} </td>
                                                 <td> {{ $data->email }} </td>
                                                 <td> {{ $data->created_at }} </td>
-                                                <td> {{ $data->vehicle_number }} </td>
                                                 <td> {{ $data->phone }} </td>
                                                 <td> @if($data->status == 1)
                                                         <span>Active</span>
