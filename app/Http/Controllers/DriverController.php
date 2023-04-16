@@ -146,6 +146,7 @@ class DriverController extends Controller
             'role' => 2,
             'phone' => $input['phone'],
             'vehicle_number' => $input['vehicle_number'],
+            'status' => 2,
             'route_number' => $input['route_number'],
             'password' => Hash::make($input['password'])
         ]);
