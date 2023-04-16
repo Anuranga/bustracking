@@ -43,7 +43,7 @@ class DriverController extends Controller
 
     public function DriverList()
     {
-        $data['allData'] = User::where('role', 1)->get();
+        $data['allData'] = User::where('role', 2)->get();
         return view('driver.driverlist', $data);
     }
 
@@ -87,11 +87,24 @@ class DriverController extends Controller
     }
 
     public function AllRoutesList()
-        {
-            $data['allData'] = DriverLocations::with(['routes', 'driver'])
-            //->where('role', 1)
-            ->get();
+    {
+        $data['allData'] = DriverLocations::with(['routes', 'driver'])
+        //->where('role', 1)
+        ->get();
 
-            return view('reports.driver_routes', $data);
-        }
+        return view('reports.driver_routes', $data);
+    }
+
+    public function updateDriverStatus(Request $request)
+    {
+        $id = $request->input('id');
+        $driverStatus = $request->input('driverStatus');
+        $data = User::find($id);
+        $data->status = $driverStatus;
+        $data->save();
+        Log::info($request);
+
+        $data['allData'] = User::where('role', 2)->get();
+        return view('driver.driverlist', $data);
+    }
 }

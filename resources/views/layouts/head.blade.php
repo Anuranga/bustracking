@@ -27,6 +27,7 @@
     <script src="{{asset('storage/vendors/js/vendor.bundle.base.js')}}"></script>
     <script src="{{asset('js/off-canvas.js')}}"></script>
     <script src="{{asset('js/misc.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @font-face {
             font-family: 'simple-line-icons';

@@ -30,11 +30,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/dashboard', function () { return view('welcome');})->name('dashboard');
 
         Route::any('/driver_registration', [DriverController::class, 'RegisterDriver'])->name('driver_registration');
+        //Route::any('/update_driver_status', [DriverController::class, 'updateDriverStatus'])->name('update_driver_status');
         Route::any('/driver_list', [DriverController::class, 'DriverList'])->name('driver_list');
         Route::any('/driver_routes_list', [DriverController::class, 'DriverRoutesList'])->name('driver_routes_list');
+
         Route::any('/all_driver_list', [DriverController::class, 'AllDriverList'])->name('all_driver_list');
         Route::any('/all_passenger_list', [PassengerController::class, 'AllPassengerList'])->name('all_passenger_list');
         Route::any('/all_routes_list', [DirectionController::class, 'AllRoutesList'])->name('all_routes_list');
+
         Route::any('/passenger_routes_list', [PassengerController::class, 'PassengerRoutesList'])->name('passenger_routes_list');
         Route::any('/passenger_list', [PassengerController::class, 'PassengerList'])->name('passenger_list');
 
@@ -46,3 +49,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     //});
 });
+
+Route::any('update_driver_status', [DriverController::class, 'updateDriverStatus'])->name('update_driver_status');

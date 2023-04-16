@@ -59,25 +59,42 @@
                                                 <th> Name </th>
                                                 <th> Email </th>
                                                 <th> Vehicle Number </th>
-                                                <th> Registered Date </th>
+                                                {{--<th> Registered Date </th>--}}
                                                 <th> Phone </th>
-                                                <th> View </th>
+                                                <th> Status </th>
+                                                <th> Status Change </th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($allData as $key  => $data)
                                                 <tr>
-                                                    <td width="10px">  {{ $data->id }} </td>
+                                                    <td width="10px"> {{ $data->id }} </td>
                                                     <td width="10px"> {{ $data->name }} </td>
                                                     <td width="10px"> {{ $data->email }} </td>
                                                     <td width="10px"> {{ $data->vehicle_number }} </td>
-                                                    <td width="10px"> {{ $data->created_at }} </td>
+                                                    {{--<td width="10px"> {{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y') }}</td>--}}
                                                     <td width="10px"> {{ $data->phone }} </td>
-                                                    <td width="10px"> <button type="button" class="btn px-0"><i class="icon-book-open mr-2"></i>View</button></td>
+                                                    <td width="10px">
+                                                        @if($data->status == 1)
+                                                            <span>Active</span>
+                                                        @elseif($data->status == 2)
+                                                            <span>Pending</span>
+                                                        @elseif($data->status == 3)
+                                                            <span>Deactivated</span>
+                                                        @endif
+                                                    </td>
+                                                    <td style="min-width: 200px;">
+                                                    <select class="form-control" name="driverStatus" id="driverStatus{{$data->id}}" onchange="getCompanyName({{ $data->id }})">
+                                                        <option value="{{1}}">Active</option>
+                                                        <option value="{{2}}">Pending</option>
+                                                        <option value="{{3}}">Deactive</option>
+                                                        </select>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
                                         </table>
+                                        <div id="div1"></div>
                                     </div>
                                 </div>
                             </div>
@@ -95,4 +112,64 @@
     </div>
 </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    function getCompanyName(id)
+    {
+        var driverStatus = document.getElementById("driverStatus"+id).value;
+        console.log('driver status1', driverStatus);
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Activate Driver!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var driverStatus = document.getElementById("driverStatus"+id).value;
+                console.log('driver status', driverStatus);
+                $.ajax({
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: "POST",
+                    url: "{{URL::to('update_driver_status')}}",
+                    data: {
+                        'id': id,
+                        'driverStatus': driverStatus
+                    },
+                    success:function(data){
+                        swalWithBootstrapButtons.fire(
+                            'Done!',
+                            'Driver status has been changed.',
+                            'success'
+                        )
+                    }
+                });
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Driver status not changed',
+                    'error'
+                )
+            }
+
+        })
+       location.reload();
+    }
+</script>
 </html>
