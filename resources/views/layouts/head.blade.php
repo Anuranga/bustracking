@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{asset('storage/vendors/css/vendor.bundle.base.css')}}">
     <link rel="stylesheet" href="{{asset('css/css/style.css')}}">
     <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="{{asset('storage/vendors/js/vendor.bundle.base.js')}}"></script>
     <script src="{{asset('js/off-canvas.js')}}"></script>
     <script src="{{asset('js/misc.js')}}"></script>
