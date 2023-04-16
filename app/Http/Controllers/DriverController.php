@@ -12,6 +12,16 @@ use PDF;
 
 class DriverController extends Controller
 {
+    /*public function __construct(Request $request)
+    {
+        $value = $request->session()->get('key');
+
+        // ...
+
+        $user = $this->users->find($id);
+
+        return view('user.profile', ['user' => $user]);
+    }*/
 
     public function DriverLogin(Request $request): \Illuminate\Http\JsonResponse
     {

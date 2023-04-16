@@ -12,13 +12,13 @@ class Role
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @param  \Closure  $next
+     * @return mixed
      */
-    public const Admin = '1';
+    /*public const Admin = '1';
     public const CEO = '2';
     public function handle(Request $request, Closure $next, ... $roles){
-       /* $user = Auth::user();
+        $user = Auth::user();
 
         $role = Auth::user()->role;
 
@@ -26,6 +26,21 @@ class Role
             return redirect()->back();
         }
 
-        return $next($request);*/
+        return $next($request);
+    }*/
+
+    public function handle(Request $request, Closure $next, $super_adminRole, $adminRole,  $sellerRole)
+    {
+        $roles = Auth::check() ? ['Admin', 'Driver'] : [];
+
+        if (in_array($super_adminRole, $roles)) {
+            return $next($request);
+        } else if (in_array($adminRole, $roles)) {
+            return $next($request);
+        } else if (in_array($sellerRole, $roles)) {
+            return $next($request);
+        }
+
+        return Redirect::route('home');
     }
 }

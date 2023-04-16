@@ -3,6 +3,7 @@
 use App\Http\Controllers\DirectionController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\PassengerController;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,11 +27,13 @@ Route::prefix('users')->group(function (){
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    //Route::group(['middleware' => 'role:Admin,CEO'], function(){
-        Route::get('/dashboard', function () { return view('welcome');})->name('dashboard');
+    // Route::group(['middleware' => 'role:Admin,CEO'], function(){
+        Route::get('/dashboard', function () {
+            return view('welcome');
+        })->name('dashboard');
 
         Route::any('/driver_registration', [DriverController::class, 'RegisterDriver'])->name('driver_registration');
-        //Route::any('/update_driver_status', [DriverController::class, 'updateDriverStatus'])->name('update_driver_status');
+        Route::any('/update_driver_status', [DriverController::class, 'updateDriverStatus'])->name('update_driver_status');
         Route::any('/driver_list', [DriverController::class, 'DriverList'])->name('driver_list');
         Route::any('/driver_routes_list', [DriverController::class, 'DriverRoutesList'])->name('driver_routes_list');
 
@@ -47,7 +50,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::any('generate-pdf-all-passenger', [PassengerController::class, 'generatePDFAllPassenger'])->name('generate-pdf-all-passenger');
         Route::any('generate-pdf-all-routes', [DirectionController::class, 'generatePDFAllRoutes'])->name('generate-pdf-all-routes');
 
-    //});
+   // });
 });
 
-Route::any('update_driver_status', [DriverController::class, 'updateDriverStatus'])->name('update_driver_status');
+// Route::any('update_driver_status', [DriverController::class, 'updateDriverStatus'])->name('update_driver_status');

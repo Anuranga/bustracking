@@ -74,7 +74,11 @@
                                         <tr>
                                             <td width="10px"> {{ $key + 1 }} </td>
                                             <td width="10px"> {{ $data->driver->name }} </td>
-                                            <td width="10px"> {{ $data->routes->route_name }} </td>
+                                            <td width="10px">
+                                                @isset($data->routes->route_name)
+                                                    {{ $data->routes->route_name }}
+                                                @endisset
+                                            </td>
                                             <td width="10px"> {{ $data->vehicle_number }} </td>
                                             <td width="10px"> {{ \Carbon\Carbon::parse($data->driver->created_at)->format('d/m/Y')  }} </td>
                                             <td width="10px"> {{ $data->driver->phone }} </td>
