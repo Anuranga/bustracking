@@ -155,6 +155,7 @@
                             'Driver status has been changed.',
                             'success'
                         )
+                        location.reload();
                     }
                 });
             } else if (
@@ -166,10 +167,9 @@
                     'Driver status not changed',
                     'error'
                 )
+                location.reload();
             }
-
         })
-       location.reload();
     }
 </script>
 </html>
