@@ -61,6 +61,7 @@
                                         <th> Name </th>
                                         <th> Email </th>
                                         <th> Vehicle Number </th>
+                                        <th> Route Number </th>
                                         <th> Registered Date </th>
                                         <th> Phone </th>
                                         <th> Status </th>
@@ -73,13 +74,16 @@
                                             <td width="10px"> {{ $data->name }} </td>
                                             <td width="10px"> {{ $data->email }} </td>
                                             <td width="10px"> {{ $data->vehicle_number }} </td>
+                                            <td width="10px"> {{ $data->route_number }} </td>
                                             <td width="10px"> {{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y') }} </td>
                                             <td width="10px"> {{ $data->phone }} </td>
                                             <td width="10px">
                                                 @if($data->status == 1)
-                                                    <span>Active</span>
-                                                @elseif($data->status == 0)
+                                                    <span>Approved</span>
+                                                @elseif($data->status == 2)
                                                     <span>Pending</span>
+                                                @elseif($data->status == 3)
+                                                    <span>Rejected</span>
                                                 @endif
                                             </td>
                                         </tr>

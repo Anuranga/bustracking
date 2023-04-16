@@ -76,18 +76,18 @@
                                                     <td width="10px"> {{ $data->phone }} </td>
                                                     <td width="10px">
                                                         @if($data->status == 1)
-                                                            <span>Active</span>
+                                                            <span>Approved</span>
                                                         @elseif($data->status == 2)
                                                             <span>Pending</span>
                                                         @elseif($data->status == 3)
-                                                            <span>Deactivated</span>
+                                                            <span>Rejected</span>
                                                         @endif
                                                     </td>
                                                     <td style="min-width: 200px;">
                                                     <select class="form-control" name="driverStatus" id="driverStatus{{$data->id}}" onchange="getCompanyName({{ $data->id }})">
-                                                        <option value="{{1}}">Active</option>
+                                                        <option value="{{1}}">Approve</option>
                                                         <option value="{{2}}">Pending</option>
-                                                        <option value="{{3}}">Deactive</option>
+                                                        <option value="{{3}}">Reject</option>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -133,7 +133,7 @@
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, Activate Driver!',
+            confirmButtonText: 'Yes, Change Status',
             cancelButtonText: 'No, cancel!',
             reverseButtons: true
         }).then((result) => {

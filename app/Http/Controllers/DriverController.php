@@ -79,7 +79,7 @@ class DriverController extends Controller
 
     public function AllDriverList()
     {
-        $data['allData'] = User::with(['route'])->where('role', 1)->get();
+        $data['allData'] = User::with(['route'])->where('role', 2)->get();
 
         return view('reports.all_driver_list', $data);
     }
